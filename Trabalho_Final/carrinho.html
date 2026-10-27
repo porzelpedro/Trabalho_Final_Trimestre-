@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sacola | Empório do Café</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="main-header">
+    <a class="logo-link" href="index.html">
+      <img class="logo-img" src="img/logo.png" alt="" onerror="this.style.display='none'">
+      <span>Empório do Café</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="cafes.html">Nossos cafés</a>
+      <a href="index.html#planos">Assinaturas</a>
+      <a class="cart-link" href="carrinho.html" aria-current="page">
+        <span aria-hidden="true">🛍</span>
+        Sacola <span class="cart-count" id="cart-count">0</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="container cart-page">
+
+    <a class="back-to-catalog" href="cafes.html">
+      <span aria-hidden="true">←</span> Voltar aos cafés
+    </a>
+
+    <div class="cart-title-area">
+      <p class="eyebrow eyebrow-dark">SEUS ESCOLHIDOS</p>
+      <h1 class="page-title">Sua sacola</h1>
+      <p class="section-intro left-intro">
+        Confira os produtos e ajuste as quantidades antes de finalizar.
+      </p>
+    </div>
+
+    <section class="cart-panel" aria-label="Itens da sacola">
+      <div class="cart-heading">
+        <span>Produto</span>
+        <span>Quantidade</span>
+        <span>Subtotal</span>
+        <span>Ação</span>
+      </div>
+
+      <div id="cart-items" aria-live="polite"></div>
+    </section>
+
+    <section class="cart-summary">
+      <p class="frete-note">
+        Frete de R$ 19,90 para pedidos abaixo de R$ 200,00.
+        Frete grátis acima desse valor.
+      </p>
+
+      <div class="cart-total">
+        <span>Subtotal</span>
+        <span>R$ <span id="total-price">0,00</span></span>
+      </div>
+
+      <div class="cart-actions">
+        <a class="btn-primary checkout-link" id="go-checkout" href="checkout.html">
+          IR PARA O CHECKOUT
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="index.html">Empório do Café</a>
+    <p>Uma pausa com mais sabor.</p>
+    <small>Projeto acadêmico demonstrativo • 2026</small>
+  </footer>
+</body>
+</html>

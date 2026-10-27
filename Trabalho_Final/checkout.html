@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Revise seus dados e finalize o pedido demonstrativo no Empório do Café.">
+  <title>Checkout | Empório do Café</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="main-header">
+    <a class="logo-link" href="index.html" aria-label="Empório do Café — página inicial">
+      <img class="logo-img" src="img/logo.png" alt="" onerror="this.style.display='none'">
+      <span>Empório do Café</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="cafes.html">Nossos cafés</a>
+      <a href="index.html#planos">Assinaturas</a>
+      <a class="cart-link" href="carrinho.html"><span aria-hidden="true">🛍</span> Sacola <span class="cart-count" id="cart-count">0</span></a>
+    </nav>
+  </header>
+
+  <main class="checkout-container">
+    <p class="eyebrow eyebrow-dark">QUASE LÁ</p>
+    <h1 class="page-title">Finalizar pedido</h1>
+    <p class="checkout-demo-notice">Esta é uma simulação acadêmica. Use dados fictícios; nenhum pagamento real será processado.</p>
+
+    <div class="checkout-layout">
+      <div class="checkout-forms-area">
+        <form class="checkout-form" id="checkout-form">
+          <section class="form-block">
+            <h3>1. Dados para contato</h3>
+            <div class="form-grid">
+              <div class="form-group full-width">
+                <label for="customer-name">Nome completo</label>
+                <input id="customer-name" name="customerName" type="text" autocomplete="name" minlength="3" required>
+              </div>
+
+              <div class="form-group">
+                <label for="customer-email">E-mail</label>
+                <input id="customer-email" name="customerEmail" type="email" autocomplete="email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="customer-phone">Telefone</label>
+                <input id="customer-phone" name="customerPhone" type="tel" autocomplete="tel" placeholder="(00) 00000-0000" required>
+              </div>
+            </div>
+          </section>
+
+          <section class="form-block">
+            <h3>2. Endereço de entrega</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="customer-cep">CEP</label>
+                <input id="customer-cep" name="cep" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}-?[0-9]{3}" placeholder="00000-000" required>
+              </div>
+
+              <div class="form-group">
+                <label for="customer-city">Cidade</label>
+                <input id="customer-city" name="city" type="text" autocomplete="address-level2" required>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="customer-address">Rua, número e complemento</label>
+                <input id="customer-address" name="address" type="text" autocomplete="street-address" required>
+              </div>
+
+              <div class="form-group">
+                <label for="customer-neighborhood">Bairro</label>
+                <input id="customer-neighborhood" name="neighborhood" type="text" required>
+              </div>
+
+              <div class="form-group">
+                <label for="customer-state">Estado (UF)</label>
+                <input id="customer-state" name="state" type="text" maxlength="2" pattern="[A-Za-z]{2}" autocomplete="address-level1" placeholder="RS" required>
+              </div>
+            </div>
+          </section>
+
+          <section class="form-block">
+            <h3>3. Forma de pagamento</h3>
+
+            <div class="payment-methods" role="group" aria-label="Escolha a forma de pagamento">
+              <button class="pay-btn active" type="button" data-payment="pix" onclick="selectPayment('pix', this)" aria-pressed="true">PIX</button>
+              <button class="pay-btn" type="button" data-payment="credit" onclick="selectPayment('credit', this)" aria-pressed="false">Crédito</button>
+              <button class="pay-btn" type="button" data-payment="debit" onclick="selectPayment('debit', this)" aria-pressed="false">Débito</button>
+            </div>
+
+            <div class="payment-message" id="payment-msg">Ao finalizar, será exibida uma confirmação demonstrativa de Pix. Nenhuma transação será realizada.</div>
+
+            <div id="card-details" class="hidden">
+              <div class="form-grid card-fields">
+                <div class="form-group full-width">
+                  <label for="card-name">Nome impresso no cartão</label>
+                  <input id="card-name" name="cardName" type="text" autocomplete="cc-name" disabled>
+                </div>
+
+                <div class="form-group full-width">
+                  <label for="card-number">Número do cartão fictício</label>
+                  <input id="card-number" name="cardNumber" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" pattern="[0-9 ]{13,19}" minlength="13" maxlength="19" disabled>
+                </div>
+
+                <div class="form-group">
+                  <label for="card-expiry">Validade</label>
+                  <input id="card-expiry" name="cardExpiry" type="text" autocomplete="cc-exp" placeholder="MM/AA" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" disabled>
+                </div>
+
+                <div class="form-group">
+                  <label for="card-cvv">Código de segurança</label>
+                  <input id="card-cvv" name="cardCvv" type="text" inputmode="numeric" autocomplete="cc-csc" pattern="[0-9]{3,4}" minlength="3" maxlength="4" disabled>
+                </div>
+
+                <div class="form-group full-width" id="installments-group">
+                  <label for="installments">Parcelamento</label>
+                  <select id="installments" name="installments" disabled>
+                    <option value="1">1x sem juros</option>
+                    <option value="2">2x sem juros</option>
+                    <option value="3">3x sem juros</option>
+                  </select>
+                </div>
+              </div>
+
+              <p class="payment-hint">Não informe dados de um cartão real. Os campos servem apenas para demonstrar a interface.</p>
+            </div>
+          </section>
+
+          <button class="btn-finalizar" type="submit" id="btn-pagar">Finalizar pedido</button>
+          <p class="form-footnote">Ao finalizar, você confirma apenas um pedido de demonstração do projeto.</p>
+        </form>
+      </div>
+
+      <aside class="checkout-sidebar" aria-label="Resumo do pedido">
+        <div class="summary-block">
+          <h3>Resumo do pedido</h3>
+          <div id="checkout-items" class="checkout-items"></div>
+
+          <hr>
+
+          <div class="coupon-form">
+            <label for="coupon-input">Cupom de desconto</label>
+            <div class="coupon-controls">
+              <input id="coupon-input" type="text" placeholder="Digite o cupom" autocomplete="off">
+              <button type="button" class="coupon-button" onclick="applyCoupon()">Aplicar</button>
+            </div>
+            <p id="coupon-feedback" class="coupon-feedback" aria-live="polite"></p>
+          </div>
+
+          <hr>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="summary-subtotal">R$ 0,00</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Frete</span>
+            <span id="summary-shipping">R$ 0,00</span>
+          </div>
+
+          <div class="summary-row" id="summary-discount-row" hidden>
+            <span>Desconto</span>
+            <span id="summary-discount">- R$ 0,00</span>
+          </div>
+
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="summary-total">R$ 0,00</span>
+          </div>
+
+          <p class="summary-footnote">Frete grátis em compras a partir de R$ 200,00.</p>
+          <a class="text-link summary-back-link" href="carrinho.html">Editar sacola</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="index.html">Empório do Café</a>
+    <p>Uma pausa com mais sabor.</p>
+    <small>Projeto acadêmico demonstrativo • 2026</small>
+  </footer>
+</body>
+</html>
